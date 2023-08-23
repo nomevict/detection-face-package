@@ -2,10 +2,45 @@ import cv2 as cv
 import os
 
 class DetectaFace:
+    """ 
+    Classe responsável por detectar rostos em imagens ou em um vídeo da webcam.
+
+    Esta classe utiliza o classificador Haar Cascade para detectar rostos em imagens ou em tempo real a partir da webcam.
+
+    Attributes
+    ----------
+    imagem : str, optional
+        Caminho para o arquivo de imagem a ser processado.
+
+    Methods
+    -------
+    videoCaptureFace()
+        Captura um vídeo da webcam e detecta rostos em tempo real usando o Haar Cascade.
+
+    load_face_cascade()
+        Carrega um classificador Haar Cascade pré-treinado para detecção de faces.
+
+    detect_faces(image, face_cascade)
+        Detecta rostos em uma imagem utilizando o classificador Haar Cascade.
+
+    main()
+        Permite que o usuário escolha entre capturar vídeo da webcam ou processar uma imagem/pasta.
+    """
     def __init__(self, imagem=None):
+        """
+        Parameters
+        ----------
+        imagem : str, optional
+            Caminho para o arquivo de imagem a ser processado.
+        """
         self.imagem = imagem
 
     def videoCaptureFace(self):
+        """
+        permite a captura de vídeo da webcam e detecta faces em cenario real.
+
+        usa classificador Haar Cascade para detecção de faces.
+        """
         webcamera = cv.VideoCapture(0)
 
         classificadorVideo = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -31,10 +66,20 @@ class DetectaFace:
         cv.destroyAllWindows()
 
     def load_face_cascade(self):
+        """
+        O método load_face_cascade carrega um classificador Haar Cascade 
+        
+        classificador pré-treinado para detecção de faces.
+        """
         face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
         return face_cascade
 
     def detect_faces(self, image, face_cascade):
+        """
+        usa o classificador carregado para detectar rostos em uma imagem. 
+        
+        Ele desenha retângulos ao redor das faces detectadas.
+        """
         image_copy = image.copy()
 
         # Detecta rostos na imagem
@@ -46,6 +91,11 @@ class DetectaFace:
         return image_copy, len(face_rectangles)
     
     def main(self):
+        """
+        permite que o usuário escolha entre capturar vídeo da webcam, processar uma imagem específica.
+         
+        ou, processar todas as imagens em uma pasta.
+        """
         face_cascade = self.load_face_cascade()
         while True:
             print('-'*60)
