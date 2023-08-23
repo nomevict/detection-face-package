@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+peoplefaceimage/__init__.py
+peoplefaceimage/pacote.py
+peoplefaceimage.egg-info/PKG-INFO
+peoplefaceimage.egg-info/SOURCES.txt
+peoplefaceimage.egg-info/dependency_links.txt
+peoplefaceimage.egg-info/requires.txt
+peoplefaceimage.egg-info/top_level.txt
